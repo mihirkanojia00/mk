@@ -135,14 +135,12 @@ def generate_answer(question, openAI_key):
         prompt += c + '\n\n'
 
     prompt += (
-        "Instructions: Compose a comprehensive reply to the query using the search results given. "
-        "Cite each reference using [ Page Number] notation (every result has this number at the beginning). "
-        "Citation should be done at the end of each sentence. If the search results mention multiple subjects "
-        "with the same name, create separate answers for each. Only include information found in the results and "
-        "don't add any additional information. Make sure the answer is correct and don't output false content. "
-        "If the text does not relate to the query, simply state 'Text Not Found in PDF'. Ignore outlier "
-        "search results which has nothing to do with the question. Only answer what is asked. The "
-        "answer should be short and concise. Answer step-by-step. \n\nQuery: {question}\nAnswer: "
+        "instructions-  A simple web interface to upload a PDF document.
+ A chat-like interface to ask questions related to the PDF.
+ Responses should be generated using an LLM OpenAI.
+ You should use RAG approach to do a similarity search.
+ Backend to process the file, chunk it, store embeddings, and retrieve relevant context for each query.
+ It should be able to process file of minimum 500 pages."
     )
 
     prompt += f"Query: {question}\nAnswer:"
