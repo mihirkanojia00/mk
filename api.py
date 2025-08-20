@@ -157,16 +157,14 @@ def load_openai_key() -> str:
     return key
 
 
-@serving
+
 def ask_url(url: str, question: str):
     download_pdf(url, 'corpus.pdf')
     load_recommender('corpus.pdf')
     openAI_key = load_openai_key()
     return generate_answer(question, openAI_key)
 
-
-@serving
-async def ask_file(file: UploadFile, question: str) -> str:
+def ask_file(file: UploadFile, question: str) -> str:
     suffix = Path(file.filename).suffix
     with NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
         shutil.copyfileobj(file.file, tmp)
